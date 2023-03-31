@@ -1,11 +1,9 @@
 import requests
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from model import FinancialData, db
 from sqlalchemy.dialects.sqlite import insert
 from requests.exceptions import ConnectionError
 import os
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 from pathlib import Path
 load_dotenv(Path('env/.env'))
 
