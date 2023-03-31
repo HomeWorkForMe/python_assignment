@@ -1,5 +1,23 @@
 # Take-Home Assignment
 
+## Libraries used
+### - Flask
+### - Flask-SQLAlchemy
+### - SQLite
+#### For project this size and time of development, just keep it simple and clean.
+
+
+# Answers/Comments for Task 1    
+### For migration, we can use "flask_migrate" library to do that, but it's not the scope for this project
+### If you cannot find financial_data.db, or want to create a new database, please delete financial_data.db, if exists, 
+### then run "python model.py --create"
+
+## About environment variable (API Key)
+### My code loaded that from file 'env/.env', just open that file and edit it as API_KEY=[YOUR API KEY]
+### For the production environment, just do something similar, depending on the service provider (AWS, Heroku, etc.)
+
+# Answers/Comments for Task 2
+
 The goal of this take-home assignment is to evaluate your abilities to use API, data processing and transformation, SQL, and implement a new API service in Python.
 
 You should first fork this repository, and then send us the code or the url of your forked repository via email.
