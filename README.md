@@ -17,6 +17,10 @@
 ### For the production environment, just do something similar, depending on the service provider (AWS, Heroku, etc.)
 
 # Answers/Comments for Task 2
+### I created 2 services, one for fetch and create database, the other one is for the API.     
+### Tested and run sucessfully using docker-compose. The programs load API key from env/
+### For most cases, the API tends to return error response if there is an error, with empty data.
+### If there is no error, it will return data with empty error.
 
 The goal of this take-home assignment is to evaluate your abilities to use API, data processing and transformation, SQL, and implement a new API service in Python.
 

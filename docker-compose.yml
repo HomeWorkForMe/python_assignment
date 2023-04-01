@@ -1,0 +1,20 @@
+version: '3'
+services:
+  database:
+    build: .
+    command: sh -c "python model.py -c && python get_raw_data.py"
+    volumes:
+      - .:/app
+    environment:
+      - SQLALCHEMY_DATABASE_URI=sqlite:////financial_data.db
+  app:
+    build: .
+    command: sh -c "cd financial&& python3 app.py"
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_APP=financial/app.py
+      - FLASK_ENV=development
+      - SQLALCHEMY_DATABASE_URI=sqlite:////financial_data.db

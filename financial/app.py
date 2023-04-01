@@ -6,9 +6,10 @@ from flask import request, jsonify
 from werkzeug.exceptions import NotFound
 from sqlalchemy.sql import func
 import datetime
-# Access the model.py
+# Add path to access the model.py
 parent_dir = os.path.join(Path.cwd(), os.pardir)
 sys.path.append(parent_dir)
+print(os.listdir(Path.cwd()))
 from model import FinancialData, app
 
 
@@ -120,4 +121,4 @@ def get_statistics_data():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

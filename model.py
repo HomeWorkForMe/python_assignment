@@ -3,13 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 import argparse
 
-# Initiate the parser
 parser = argparse.ArgumentParser()
 parser.add_argument("-c", "--create", help="create_database", action="store_true")
 args = parser.parse_args()
 
 db = SQLAlchemy()
-# create the app
 app = Flask(__name__)
 app.app_context().push()
 db_path = os.path.join(os.path.dirname(__file__), 'financial_data.db')
