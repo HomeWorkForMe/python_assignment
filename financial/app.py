@@ -37,6 +37,7 @@ def get_financial_data():
 
     data = []
     pagination = []
+    response['info'] = {'error': ''}
     if not error_message:
         # Query data from start to end
         query = FinancialData.query
@@ -70,7 +71,7 @@ def get_financial_data():
 
     response['data'] = data
     response['pagination'] = pagination
-    response['error'] = error_message
+    response['info']['error'] = error_message
     return jsonify(response)
 
 
@@ -87,6 +88,7 @@ def get_statistics_data():
         error_message = 'Data incomplete, make sure to provide all arguments'
 
     data = []
+    response['info'] = {'error': ''}
     if not error_message:
         # Query data from start to end
         query = FinancialData.query
@@ -116,7 +118,7 @@ def get_statistics_data():
         }
 
     response['data'] = data
-    response['error'] = error_message
+    response['info']['error'] = error_message
     return jsonify(response)
 
 
