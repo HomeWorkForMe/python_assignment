@@ -4,7 +4,8 @@ import os
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-c", "--create", help="create_database", action="store_true")
+parser.add_argument('-f', '--get_full_data', help='Get full data (20+ years of historical data.)', action='store_true')
+parser.add_argument('-c', '--create', help='create_database', action='store_true')
 args = parser.parse_args()
 
 db = SQLAlchemy()

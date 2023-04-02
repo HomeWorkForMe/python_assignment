@@ -1,5 +1,6 @@
 import requests
-from model import FinancialData, db
+import argparse
+from model import FinancialData, db, args
 from sqlalchemy.dialects.sqlite import insert
 from requests.exceptions import ConnectionError
 import os
@@ -7,12 +8,17 @@ from dotenv import load_dotenv
 from pathlib import Path
 load_dotenv(Path('env/.env'))
 
+
 # Load from .env file
 API_KEY = os.getenv("API_KEY")
 
 
-def get_data(symbol):
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={API_KEY}'
+def get_data(symbol, get_full_data=False):
+    if get_full_data:
+        url = f'https://www.alphavantage.co/query?' \
+              f'function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&outputsize=full&apikey={API_KEY}'
+    else:
+        url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={API_KEY}'
     try:
         r = requests.get(url)
         if r.status_code != 200:
@@ -25,8 +31,12 @@ def get_data(symbol):
     data = r.json()
     daily = data["Time Series (Daily)"]
     rows = []
+    dates = list(daily.keys())
+
     # Skip weekends, 2 weeks ago is the latest 10 weekdays
-    for date in list(daily.keys())[: 10]:
+    if not get_full_data:
+        dates = dates[: 10]
+    for date in dates:
         row = dict()
         info = daily[date]
 
@@ -57,5 +67,6 @@ def upsert_stmt():
 
 
 if __name__ == "__main__":
-    get_data('AAPL')
-    get_data('IBM')
+    full_data = args.get_full_data
+    get_data('AAPL', get_full_data=full_data)
+    get_data('IBM', get_full_data=full_data)

@@ -9,7 +9,6 @@ import datetime
 # Add path to access the model.py
 parent_dir = os.path.join(Path.cwd(), os.pardir)
 sys.path.append(parent_dir)
-print(os.listdir(Path.cwd()))
 from model import FinancialData, app
 
 

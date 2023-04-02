@@ -2,7 +2,7 @@ version: '3'
 services:
   database:
     build: .
-    command: sh -c "python model.py -c && python get_raw_data.py"
+    command: sh -c "python model.py -c && python get_raw_data.py -f"
     volumes:
       - .:/app
     environment:
